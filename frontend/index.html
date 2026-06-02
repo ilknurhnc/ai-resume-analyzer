@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Resume ATS Analyzer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <h1>AI Resume ATS Analyzer</h1>
+      <p>Upload your PDF or DOCX resume and get an ATS compatibility score.</p>
+    </section>
+
+    <section class="upload-card">
+      <label for="resumeFile">Upload Resume</label>
+      <input id="resumeFile" type="file" accept=".pdf,.docx" />
+
+      <button id="analyzeBtn">Analyze Resume</button>
+
+      <p id="statusMessage" class="status"></p>
+    </section>
+
+    <section id="resultSection" class="result hidden">
+      <h2>Analysis Result</h2>
+
+      <div class="score-card">
+        <span>Final ATS Score</span>
+        <strong id="finalScore">-</strong>
+      </div>
+
+      <div class="grid">
+        <div class="panel">
+          <h3>Score Breakdown</h3>
+          <ul id="scoreBreakdown"></ul>
+        </div>
+
+        <div class="panel">
+          <h3>Overall Assessment</h3>
+          <p id="overallAssessment"></p>
+        </div>
+
+        <div class="panel">
+          <h3>Strengths</h3>
+          <ul id="strengthsList"></ul>
+        </div>
+
+        <div class="panel">
+          <h3>Weaknesses</h3>
+          <ul id="weaknessesList"></ul>
+        </div>
+
+        <div class="panel">
+          <h3>Improvement Suggestions</h3>
+          <ul id="suggestionsList"></ul>
+        </div>
+
+        <div class="panel">
+          <h3>ATS Risks</h3>
+          <ul id="risksList"></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
