@@ -1,12 +1,13 @@
 from fastapi import APIRouter, File, HTTPException, UploadFile
 
+from app.schemas import AnalyzeFileResponse
 from app.services.analyzer_service import analyze_resume_text
 from app.services.file_parser import extract_text_from_file
 
 router = APIRouter()
 
 
-@router.post("/analyze-file")
+@router.post("/analyze-file", response_model=AnalyzeFileResponse)
 async def analyze_file(file: UploadFile = File(...)):
     content = await file.read()
 
