@@ -154,3 +154,15 @@
       font-size: 28px;
     }
   }
+
+  .score-high {
+    color: #16a34a !important;
+  }
+  
+  .score-medium {
+    color: #f59e0b !important;
+  }
+  
+  .score-low {
+    color: #dc2626 !important;
+  }

@@ -46,8 +46,23 @@ function renderScoreBreakdown(breakdown) {
   });
 }
 
+function getScoreClass(score) {
+  if (score >= 80) {
+    return "score-high";
+  }
+
+  if (score >= 60) {
+    return "score-medium";
+  }
+
+  return "score-low";
+}
+
 function renderAnalysis(data) {
   const analysis = data.analysis;
+
+  finalScore.classList.remove("score-high", "score-medium", "score-low");
+  finalScore.classList.add(getScoreClass(analysis.final_score));
 
   finalScore.textContent = `${analysis.final_score}%`;
   overallAssessment.textContent = analysis.overall_assessment;
@@ -91,7 +106,7 @@ async function analyzeResume() {
     renderAnalysis(data);
     statusMessage.textContent = "Analysis completed.";
   } catch (error) {
-    statusMessage.textContent = error.message;
+    statusMessage.textContent = `Error: ${error.message}`;
   } finally {
     analyzeBtn.disabled = false;
   }
