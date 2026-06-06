@@ -112,6 +112,18 @@
     color: #111827;
   }
   
+  .score-high {
+    color: #16a34a !important;
+  }
+  
+  .score-medium {
+    color: #f59e0b !important;
+  }
+  
+  .score-low {
+    color: #dc2626 !important;
+  }
+  
   .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -153,16 +165,4 @@
     .hero h1 {
       font-size: 28px;
     }
-  }
-
-  .score-high {
-    color: #16a34a !important;
-  }
-  
-  .score-medium {
-    color: #f59e0b !important;
-  }
-  
-  .score-low {
-    color: #dc2626 !important;
   }
