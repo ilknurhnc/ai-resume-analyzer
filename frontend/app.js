@@ -20,7 +20,7 @@ function clearList(element) {
 function renderList(element, items) {
   clearList(element);
 
-  if (!items || items.length === 0) {
+  if (!Array.isArray(items) || items.length === 0) {
     const li = document.createElement("li");
     li.textContent = "No items found.";
     element.appendChild(li);
@@ -36,6 +36,13 @@ function renderList(element, items) {
 
 function renderScoreBreakdown(breakdown) {
   clearList(scoreBreakdown);
+
+  if (!breakdown) {
+    const li = document.createElement("li");
+    li.textContent = "No score breakdown found.";
+    scoreBreakdown.appendChild(li);
+    return;
+  }
 
   Object.entries(breakdown).forEach(([key, value]) => {
     const li = document.createElement("li");
@@ -65,7 +72,7 @@ function renderAnalysis(data) {
   finalScore.classList.add(getScoreClass(analysis.final_score));
 
   finalScore.textContent = `${analysis.final_score}%`;
-  overallAssessment.textContent = analysis.overall_assessment;
+  overallAssessment.textContent = analysis.overall_assessment || "No assessment found.";
 
   renderScoreBreakdown(analysis.score_breakdown);
   renderList(strengthsList, analysis.strengths);
@@ -94,18 +101,28 @@ async function analyzeResume() {
   try {
     const response = await fetch(API_URL, {
       method: "POST",
-      body: formData
+      body: formData,
+      mode: "cors"
     });
 
-    const data = await response.json();
+    let data;
+
+    try {
+      data = await response.json();
+    } catch {
+      throw new Error("Backend did not return valid JSON.");
+    }
 
     if (!response.ok) {
-      throw new Error(data.detail || "Something went wrong.");
+      throw new Error(data.detail || `Backend returned status ${response.status}`);
     }
+
+    console.log("Backend response:", data);
 
     renderAnalysis(data);
     statusMessage.textContent = "Analysis completed.";
   } catch (error) {
+    console.error("Frontend request error:", error);
     statusMessage.textContent = `Error: ${error.message}`;
   } finally {
     analyzeBtn.disabled = false;
