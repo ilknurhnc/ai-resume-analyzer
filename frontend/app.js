@@ -6,11 +6,12 @@ const statusMessage = document.getElementById("statusMessage");
 const resultSection = document.getElementById("resultSection");
 
 const finalScore = document.getElementById("finalScore");
+const scoreLabel = document.getElementById("scoreLabel");
 const scoreBreakdown = document.getElementById("scoreBreakdown");
 const overallAssessment = document.getElementById("overallAssessment");
+const recommendationsList = document.getElementById("recommendationsList");
 const strengthsList = document.getElementById("strengthsList");
 const weaknessesList = document.getElementById("weaknessesList");
-const suggestionsList = document.getElementById("suggestionsList");
 const risksList = document.getElementById("risksList");
 
 function clearList(element) {
@@ -72,12 +73,13 @@ function renderAnalysis(data) {
   finalScore.classList.add(getScoreClass(analysis.final_score));
 
   finalScore.textContent = `${analysis.final_score}%`;
+  scoreLabel.textContent = analysis.score_label || "";
   overallAssessment.textContent = analysis.overall_assessment || "No assessment found.";
 
+  renderList(recommendationsList, analysis.top_recommendations);
   renderScoreBreakdown(analysis.score_breakdown);
   renderList(strengthsList, analysis.strengths);
   renderList(weaknessesList, analysis.weaknesses);
-  renderList(suggestionsList, analysis.improvement_suggestions);
   renderList(risksList, analysis.ats_risks);
 
   resultSection.classList.remove("hidden");
@@ -116,8 +118,6 @@ async function analyzeResume() {
     if (!response.ok) {
       throw new Error(data.detail || `Backend returned status ${response.status}`);
     }
-
-    console.log("Backend response:", data);
 
     renderAnalysis(data);
     statusMessage.textContent = "Analysis completed.";

@@ -23,44 +23,47 @@
     </section>
 
     <section id="resultSection" class="result hidden">
-      <h2>Analysis Result</h2>
-
       <div class="score-card">
-        <span>Final ATS Score</span>
+        <span>ATS SCORE</span>
         <strong id="finalScore">-</strong>
+        <p id="scoreLabel"></p>
       </div>
 
-      <div class="grid">
-        <div class="panel">
-          <h3>Score Breakdown</h3>
-          <ul id="scoreBreakdown"></ul>
-        </div>
-
-        <div class="panel">
-          <h3>Overall Assessment</h3>
-          <p id="overallAssessment"></p>
-        </div>
-
-        <div class="panel">
-          <h3>Strengths</h3>
-          <ul id="strengthsList"></ul>
-        </div>
-
-        <div class="panel">
-          <h3>Weaknesses</h3>
-          <ul id="weaknessesList"></ul>
-        </div>
-
-        <div class="panel">
-          <h3>Improvement Suggestions</h3>
-          <ul id="suggestionsList"></ul>
-        </div>
-
-        <div class="panel">
-          <h3>ATS Risks</h3>
-          <ul id="risksList"></ul>
-        </div>
+      <div class="panel">
+        <h3>Overall Assessment</h3>
+        <p id="overallAssessment"></p>
       </div>
+
+      <div class="panel">
+        <h3>Top Recommendations</h3>
+        <ul id="recommendationsList"></ul>
+      </div>
+
+      <details class="details-panel">
+        <summary>Show Detailed Analysis</summary>
+
+        <div class="details-grid">
+          <div class="panel">
+            <h3>Score Breakdown</h3>
+            <ul id="scoreBreakdown"></ul>
+          </div>
+
+          <div class="panel">
+            <h3>Strengths</h3>
+            <ul id="strengthsList"></ul>
+          </div>
+
+          <div class="panel">
+            <h3>Weaknesses</h3>
+            <ul id="weaknessesList"></ul>
+          </div>
+
+          <div class="panel">
+            <h3>ATS Risks</h3>
+            <ul id="risksList"></ul>
+          </div>
+        </div>
+      </details>
     </section>
   </main>
 
