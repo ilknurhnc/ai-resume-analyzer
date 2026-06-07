@@ -1,0 +1,18 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: resume-analyzer-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: resume-analyzer-frontend
+    ports:
+      - "5500:80"
+    depends_on:
+      - backend
