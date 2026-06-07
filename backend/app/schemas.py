@@ -25,3 +25,6 @@ class AnalyzeFileResponse(BaseModel):
     filename: str
     extracted_text_preview: str
     analysis: ResumeAnalysis
+    job_match_score: int | None = None
+    missing_keywords: list[str] = []
+    matched_keywords: list[str] = []
